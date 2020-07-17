@@ -2,6 +2,7 @@ package com.study.spring.springaop;
 
 import com.study.spring.springaop.configuration.SpringAopBeforeAdvice;
 import com.study.spring.springaop.dao.AccountDao;
+import com.study.spring.springaop.dao.EmployeeDao;
 import com.study.spring.springaop.dao.MembershipDao;
 import com.study.spring.springaop.dao.StudentDao;
 import com.study.spring.springaop.entity.Student;
@@ -32,6 +33,16 @@ public class MainApplication {
             Student student = new Student("John", "Subin");
             studentDao.addStudent(student);
             studentDao.updateStudent(student,true);
+
+
+            System.out.println("\n\nEmployee DAO test for point cut declarations");
+            //Before execution AspectJ - point cut expression
+            EmployeeDao employeeDao = applicationContext.getBean("employeeDao", EmployeeDao.class);
+            employeeDao.setFirstName("John");
+            employeeDao.setLastName("Subin");
+            System.out.println("Added employee is..." + employeeDao.getFirstName() + " " + employeeDao.getLastName());
+            employeeDao.addEmployee();
+
         } finally {
             applicationContext.close();
         }

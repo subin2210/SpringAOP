@@ -2,6 +2,7 @@ package com.study.spring.springaop.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -41,10 +42,33 @@ public class LogAscpect {
 
     //Point cut expression for any method name staring with update and having one specified object
     // and having n number of other arguments
-//    public void updateStudent(Student student,
     @Before("execution(public void update*(com.study.spring.springaop.entity.Student,..))")
     public void beforeUpdateWithOneSpecifArgument() {
         System.out.println("Executing before method starting with update and student object, " +
                 "+ having n number of other objects");
+    }
+
+    //Point cut expression for before Aspect on multiple method in same class
+    @Pointcut("execution(* com.study.spring.springaop.dao.EmployeeDao.*(..))")
+    public void beforeEmployee() {
+    }
+
+    @Pointcut("execution(* com.study.spring.springaop.dao.*.get*())")
+    public void getter() {
+    }
+
+    @Pointcut("execution(* com.study.spring.springaop.dao.*.set*(..))")
+    public void setter() {}
+
+    //Before execution AspectJ excluding getting and setter
+    @Before("beforeEmployee() && !(getter() || setter())")
+    public void logEmployee() {
+        System.out.println("log employee + Executing before method");
+    }
+
+    //Before execution AspectJ excluding getting and setter
+    @Before("beforeEmployee() && !(getter() || setter())")
+    public void securityCheck() {
+        System.out.println("security check + executing before method");
     }
 }
