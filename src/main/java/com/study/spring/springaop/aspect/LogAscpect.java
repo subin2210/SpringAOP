@@ -3,10 +3,12 @@ package com.study.spring.springaop.aspect;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(2)
 public class LogAscpect {
 
     // Point cut expression matching the exact method signature
@@ -61,14 +63,13 @@ public class LogAscpect {
     public void setter() {}
 
     //Before execution AspectJ excluding getting and setter
-    @Before("beforeEmployee() && !(getter() || setter())")
-    public void logEmployee() {
-        System.out.println("log employee + Executing before method");
+    @Pointcut("beforeEmployee() && !(getter() || setter())")
+    public void beforeEmployeeNoGetterNoSetter() {
+
     }
 
-    //Before execution AspectJ excluding getting and setter
-    @Before("beforeEmployee() && !(getter() || setter())")
-    public void securityCheck() {
-        System.out.println("security check + executing before method");
+    @Before("beforeEmployeeNoGetterNoSetter()")
+    public void logEmployee() {
+        System.out.println("log employee + Executing before method");
     }
 }
