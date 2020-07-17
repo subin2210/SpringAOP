@@ -5,6 +5,7 @@ import com.study.spring.springaop.dao.AccountDao;
 import com.study.spring.springaop.dao.EmployeeDao;
 import com.study.spring.springaop.dao.MembershipDao;
 import com.study.spring.springaop.dao.StudentDao;
+import com.study.spring.springaop.entity.Employee;
 import com.study.spring.springaop.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -38,10 +39,9 @@ public class MainApplication {
             System.out.println("\n\nEmployee DAO test for point cut declarations");
             //Before execution AspectJ - point cut expression
             EmployeeDao employeeDao = applicationContext.getBean("employeeDao", EmployeeDao.class);
-            employeeDao.setFirstName("John");
-            employeeDao.setLastName("Subin");
-            System.out.println("Added employee is..." + employeeDao.getFirstName() + " " + employeeDao.getLastName());
-            employeeDao.addEmployee();
+            Employee employee = new Employee("John","Subin");
+            System.out.println("Added employee is...");
+            employeeDao.addEmployee(employee);
 
         } finally {
             applicationContext.close();

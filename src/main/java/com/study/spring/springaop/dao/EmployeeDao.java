@@ -1,5 +1,6 @@
 package com.study.spring.springaop.dao;
 
+import com.study.spring.springaop.entity.Employee;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,8 +25,8 @@ public class EmployeeDao {
         this.lastName = lastName;
     }
 
-    public void addEmployee() {
-        System.out.println(getClass() + " Adding Employee");
+    public void addEmployee(Employee employee) {
+        System.out.println(getClass() + " Adding Employee..." + employee.getFirstName());
     }
 
     public void processEmployee() {
