@@ -8,5 +8,5 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan("com.study.spring.springaop")
-public class SpringAopBeforeAdvice {
+public class SpringAopAdvice {
 }

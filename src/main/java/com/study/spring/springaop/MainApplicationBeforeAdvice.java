@@ -1,6 +1,6 @@
 package com.study.spring.springaop;
 
-import com.study.spring.springaop.configuration.SpringAopBeforeAdvice;
+import com.study.spring.springaop.configuration.SpringAopAdvice;
 import com.study.spring.springaop.dao.AccountDao;
 import com.study.spring.springaop.dao.EmployeeDao;
 import com.study.spring.springaop.dao.MembershipDao;
@@ -9,11 +9,11 @@ import com.study.spring.springaop.entity.Employee;
 import com.study.spring.springaop.entity.Student;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class MainApplication {
+public class MainApplicationBeforeAdvice {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext =
-                new AnnotationConfigApplicationContext(SpringAopBeforeAdvice.class);
+                new AnnotationConfigApplicationContext(SpringAopAdvice.class);
 
         try {
             //Before execution AspectJ
