@@ -4,7 +4,7 @@ import com.study.spring.springaop.configuration.SpringAopAdvice;
 import com.study.spring.springaop.dao.AccountDao;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class MainApplicationAfterAdvice {
+public class MainApplicationAfterReturningAdvice {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext

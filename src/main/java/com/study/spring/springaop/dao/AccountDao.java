@@ -34,4 +34,9 @@ public class AccountDao {
         accounts.add(account3);
         return accounts;
     }
+
+    public void searchAccount() {
+        if(true)
+            throw new RuntimeException("Exception while search account");
+    }
 }
