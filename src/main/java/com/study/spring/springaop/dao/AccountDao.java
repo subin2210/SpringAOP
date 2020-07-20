@@ -39,4 +39,10 @@ public class AccountDao {
         if(true)
             throw new RuntimeException("Exception while search account");
     }
+
+    public boolean deleteAccount(boolean keyAccount) {
+        if(keyAccount)
+            throw new RuntimeException("Key account cannot be deleted");
+        return true;
+    }
 }

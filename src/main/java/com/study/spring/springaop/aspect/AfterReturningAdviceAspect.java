@@ -4,6 +4,7 @@ import com.study.spring.springaop.entity.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,5 +27,15 @@ public class AfterReturningAdviceAspect {
         for(Account account : result) {
             account.setName(account.getName().toUpperCase());
         }
+    }
+
+    @AfterReturning (
+            pointcut = "execution(* com.study.spring.springaop.dao.AccountDao.*(..))",
+            returning = "result"
+    )
+    public void afterReturningAccountDelete(JoinPoint joinPoint, boolean result) {
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        System.out.println("Method caught in after Returning account advice = " + methodSignature);
+        System.out.println("Result in after returning advice = " + result);
     }
 }
