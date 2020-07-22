@@ -16,4 +16,10 @@ public class FortuneService {
 
         return "You have a good day today..";
     }
+
+    public String isRoadOpen(boolean wireIn) {
+        if(wireIn)
+            throw new  RuntimeException("There a major accident!!! Road is closed");
+        return "Yes,, the road is open. You are good to Go!!!";
+    }
 }

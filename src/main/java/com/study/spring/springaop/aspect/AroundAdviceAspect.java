@@ -22,7 +22,13 @@ public class AroundAdviceAspect {
         logger.info("Method call = "+methodSignature.getName());
 
         long start = System.currentTimeMillis();
-        Object result = proceedingJoinPoint.proceed();
+        Object result =  null;
+        try {
+            result = proceedingJoinPoint.proceed();
+        } catch (Exception exception) {
+            logger.severe(exception.getMessage());
+            result = "Road is diverted. New map is loading....";
+        }
         long end = System.currentTimeMillis();
 
         logger.info("Method execution time = "+ (end-start)/1000);

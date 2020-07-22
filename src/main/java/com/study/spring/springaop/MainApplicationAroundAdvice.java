@@ -17,6 +17,9 @@ public class MainApplicationAroundAdvice {
             FortuneService fortuneService = applicationContext.getBean("fortuneService", FortuneService.class);
             logger.info("Calling fortune service...");
             logger.info(fortuneService.getFortune());
+
+            logger.info("Finding best route...");
+            logger.info(fortuneService.isRoadOpen(true));
         } finally {
             applicationContext.close();
         }
