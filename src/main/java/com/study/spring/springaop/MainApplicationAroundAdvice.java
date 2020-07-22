@@ -4,15 +4,19 @@ import com.study.spring.springaop.configuration.SpringAopAdvice;
 import com.study.spring.springaop.service.FortuneService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.logging.Logger;
+
 public class MainApplicationAroundAdvice {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(SpringAopAdvice.class);
+
+        Logger logger = Logger.getLogger(MainApplicationAroundAdvice.class.getName());
         try {
             FortuneService fortuneService = applicationContext.getBean("fortuneService", FortuneService.class);
-            System.out.println("Calling fortune service...");
-            System.out.println(fortuneService.getFortune());
+            logger.info("Calling fortune service...");
+            logger.info(fortuneService.getFortune());
         } finally {
             applicationContext.close();
         }
